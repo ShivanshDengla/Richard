@@ -139,3 +139,29 @@
     font-size: 120px;
     line-height: 120px;
   }
+  .button-solid {
+    border: none;
+    background: none;
+}
+button-solid:focus {
+    border: none;
+    outline: none;
+}
+
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 5px;
+}
+
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.img:hover{
+  -webkit-transform: scale(2,2);
+
+}

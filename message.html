@@ -1,133 +1,470 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;background-color: #8e43b4;}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* Styles for the images and the modal window */
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #8e43b4;
+    }
 
-#myImg {
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+    .img-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-#myImg:hover {opacity: 0.7;}
+    .img-container img {
+        border: 5px solid black;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 300px;
+      margin: 10px;
+    }
 
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-}
+    .img-container img:hover {
+      opacity: 0.6;
+    }
 
-/* Modal Content (image) */
-.modal-content {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-}
+    /* The Modal (background) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    }
 
-/* Caption of Modal Image */
-#caption {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-  text-align: center;
-  color: #ccc;
-  padding: 10px 0;
-  height: 150px;
-}
+    /* Modal Content (text) */
+    .modal-content {
+      margin: auto;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+      font-size: 35px;
+      color: #8e43b4;
+      text-align: justify;
+    }
 
-/* Add Animation */
-.modal-content, #caption {  
-  -webkit-animation-name: zoom;
-  -webkit-animation-duration: 0.6s;
-  animation-name: zoom;
-  animation-duration: 0.6s;
-}
+    /* The Close Button */
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
 
-@-webkit-keyframes zoom {
-  from {-webkit-transform:scale(0)} 
-  to {-webkit-transform:scale(1)}
-}
+    .close:hover,
+    .close:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
 
-@keyframes zoom {
-  from {transform:scale(0)} 
-  to {transform:scale(1)}
-}
+    /* 100% Image Width on Smaller Screens */
+    @media only screen and (max-width: 700px){
+      .modal-content {
+        width: 100%;
+      }
+    }
 
-/* The Close Button */
-.close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-}
+    h1 {
+      text-align: center;
+      font-size: 75px;
+      font-family: "Space Mono";
+      color: white;
+      text-shadow: 3px 3px purple, 5px 5px white;
+    }
 
-.close:hover,
-.close:focus {
-  color: #bbb;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px){
-  .modal-content {
-    width: 100%;
-  }
-}
-</style>
+  </style>
 </head>
 <body>
 
-<img id="myImg" src="data:image/png;base64,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" alt="-Tjark" style="width:100%;max-width:300px">
+  <h1>Messages From Poolers!</h1>
+  <div class="img-container">
+    <img id="myImg1" src="Image/Shivansh.png" alt="image1">
+    <img id="myImg2" src="Image/Tim.png" alt="image2">
+    <img id="myImg3" src="Image/Tjark.png" alt="image3">
+    <img id="myImg4" src="Image/Thumbs up.png" alt="image3">
+    <img id="myImg5" src="Image/Taliskye.png" alt="image3">
+    <img id="myImg6" src="Image/Pedro.png" alt="image3">
+    <img id="myImg7" src="Image/Oops.png" alt="image3">
+    <img id="myImg8" src="Image/Ncookie.png" alt="image3">
+    <img id="myImg9" src="Image/Nahuel.png" alt="image3">
+    <img id="myImg10" src="Image/Mon.png" alt="image3">
+    <img id="myImg11" src="Image/Livster.png" alt="image3">
+    <img id="myImg12" src="Image/Leighton.png" alt="image3">
+    <img id="myImg13" src="Image/Dylan.png" alt="image3">
+    <img id="myImg14" src="Image/Daboom.png" alt="image3">
+    <img id="myImg15" src="Image/Brendan.png" alt="image3">
+    <img id="myImg16" src="Image/Andy.png" alt="image3">
+    
+  </div>
+
+  <!-- The Modals -->
+  <div id="myModal1" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message1"></div>
+  </div>
+
+  <div id="myModal2" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message2"></div>
+  </div>
+
+  <div id="myModal3" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message3"></div>
+  </div>
+
+  <div id="myModal4" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message4"></div>
+  </div>
+
+  <div id="myModal5" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message5"></div>
+  </div>
+
+  <div id="myModal6" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message6"></div>
+  </div>
+
+  <div id="myModal7" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message7"></div>
+  </div>
+
+  <div id="myModal8" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message8"></div>
+  </div>
+
+  <div id="myModal9" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message9"></div>
+  </div>
+
+  <div id="myModal10" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message10"></div>
+  </div>
+
+  <div id="myModal11" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message11"></div>
+  </div>
+
+  <div id="myModal12" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message12"></div>
+  </div>
+
+  <div id="myModal13" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message13"></div>
+  </div>
+
+  <div id="myModal14" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message14"></div>
+  </div>
+
+  <div id="myModal15" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message15"></div>
+  </div>
+
+  <div id="myModal16" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message16"></div>
+  </div>
+
+ 
+
+  <script>
+    // Get the modals
+    var modal1 = document.getElementById("myModal1");
+    var modal2 = document.getElementById("myModal2");
+    var modal3 = document.getElementById("myModal3");
+    var modal4 = document.getElementById("myModal4");
+    var modal5 = document.getElementById("myModal5");
+    var modal6 = document.getElementById("myModal6");
+    var modal7 = document.getElementById("myModal7");
+    var modal8 = document.getElementById("myModal8");
+    var modal9 = document.getElementById("myModal9");
+    var modal10 = document.getElementById("myModal10");
+    var modal11 = document.getElementById("myModal11");
+    var modal12 = document.getElementById("myModal12");
+    var modal13 = document.getElementById("myModal13");
+    var modal14 = document.getElementById("myModal14");
+    var modal15 = document.getElementById("myModal15");
+    var modal16 = document.getElementById("myModal16");
+    
+
+    // Get the images
+    var img1 = document.getElementById("myImg1");
+    var img2 = document.getElementById("myImg2");
+    var img3 = document.getElementById("myImg3");
+    var img4 = document.getElementById("myImg4");
+    var img5 = document.getElementById("myImg5");
+    var img6 = document.getElementById("myImg6");
+    var img7 = document.getElementById("myImg7");
+    var img8 = document.getElementById("myImg8");
+    var img9 = document.getElementById("myImg9");
+    var img10 = document.getElementById("myImg10");
+    var img11 = document.getElementById("myImg11");
+    var img12 = document.getElementById("myImg12");
+    var img13 = document.getElementById("myImg13");
+    var img14 = document.getElementById("myImg14");
+    var img15 = document.getElementById("myImg15");
+    var img16 = document.getElementById("myImg16");
+   
+
+    // Get the messages
+    var message1 = document.getElementById("message1");
+    var message2 = document.getElementById("message2");
+    var message3 = document.getElementById("message3");
+    var message4 = document.getElementById("message4");
+    var message5 = document.getElementById("message5");
+    var message6 = document.getElementById("message6");
+    var message7 = document.getElementById("message7");
+    var message8 = document.getElementById("message8");
+    var message9 = document.getElementById("message9");
+    var message10 = document.getElementById("message10");
+    var message11 = document.getElementById("message11");
+    var message12 = document.getElementById("message12");
+    var message13 = document.getElementById("message13");
+    var message14 = document.getElementById("message14");
+    var message15 = document.getElementById("message15");
+    var message16 = document.getElementById("message16");
+   
+
+    img1.onclick = function(){
+      modal1.style.display = "block";
+      message1.innerHTML = "Happy Birthday Richard! You truly are one of the most kind-hearted and positive people I know. Your willingness to always help others is truly inspiring and I am so grateful to have you as a friend. I respect you a lot for the person you are and wish you every joy in the world. Cheers to another year of spreading joy and making a difference in the world!";
+    
+    }
+
+    img2.onclick = function(){
+      modal2.style.display = "block";
+      message2.innerHTML = "Richard, thanks for your generosity, your vision, and your lessons! It is an honor to know you, ser and I'm so glad you were born!";
+    }
+
+    img3.onclick = function(){
+      modal3.style.display = "block";
+      message3.innerHTML = "I don't know where to start! Thank you for always elevating others, be it through direct help, your ability to connect with others, or simply with humor. Your positive attitude is contagious and you must be the kindest heart I know. One thing is sure - PoolTogether would not be the same without you. Happy Birthday, Richard!";
+    }
+
+    img4.onclick = function(){
+      modal4.style.display = "block";
+      message4.innerHTML = "Happy Birthday Richard! Thanks for the amazing energy you bring to the PoolTogether community and the crypto space as a whole! ";
+    }
+
+    img5.onclick = function(){
+      modal5.style.display = "block";
+      message5.innerHTML = "Happy Birthday Richard! Youre a constant inspiration in the web3 space and in life. You very literally are the change you want to see in the world. The connector of worlds and the bringer of life changing events. Everyone's life is richer with Richard.";
+    }
+
+    img6.onclick = function(){
+      modal6.style.display = "block";
+      message6.innerHTML = "Happy birthday! 🎉";
+    }
+
+    img7.onclick = function(){
+      modal7.style.display = "block";
+      message7.innerHTML = "You are a wonderful soul!  Wishing you a happy, wholesome, family filled birthday! Thank you for everything that you've done and continue to do. You've played a critical role in the success of others and we are proud to have had your support. We are grateful for you and everything you've done. You are a core example of what community means.  Hugs and love <3";
+    }
+
+    img8.onclick = function(){
+      modal8.style.display = "block";
+      message8.innerHTML = "Didn't know we'd get a Richard birthday this year - it's only getting better! Have a wonderful birthday, and keep on doing you; the world is a better place because of it.";
+    }
+
+    img9.onclick = function(){
+      modal9.style.display = "block";
+      message9.innerHTML = "Richard has been a great friend since the very beginning, even without knowing me. I wish him double the good he does for everyone. You are the best Richard!";
+    }
+
+    img10.onclick = function(){
+      modal10.style.display = "block";
+      message10.innerHTML = "Happy birthday, Sir Richard! Your kindness and generosity are a true inspiration, and we are so grateful to have you in our lives. May your special day be filled with love, laughter, and all the things you wish for, and may the coming year bring you even more blessings to share with others. Here's to another year of life and all the good it brings!";
+    }
+
+    img11.onclick = function(){
+      modal11.style.display = "block";
+      message11.innerHTML = "Richard! You are one of the most kind, thoughtful, driven, and unique people I've met in this space. We need more Richards! You karate chop the idea of risk-averse in the face (nfa, DYOR), a bullishness I see as a reflection of your conviction in Crypto and the community behind it. I barely knew you and you changed my life this past year. Thank you for encouraging me to use Juicebox to raise funds for my car. In retrospect, that was a trigger event that brought so much positivity and bravery into my life. A few weeks later, I applied to ConsenSys. I had eyed the job before but didn't believe I was 'cut out' for it. Bro, I am literally the puzzle piece that fits into that job, that's how cut out for it I am. I took a powerful community to prove that to me.  I'm starting my new position as Senior Copywriter at ConsenSys on January 31st :) Keep being you. There are other Livsters out there who need you, and your impact on me will allow me to be a Richard to those new Livsters with so much talent, but so little belief in themselves. Happy Birthday!!";
+    }
+
+    img12.onclick = function(){
+      modal12.style.display = "block";
+      message12.innerHTML = "Richard! You are an inspiration! The best friend and biggest supporter someone could ask for. I am lucky to have you in my life!";
+    }
+
+    img13.onclick = function(){
+      modal13.style.display = "block";
+      message13.innerHTML = "Thank you for all that you do in the PoolTogether community 🫡🤝";
+    }
+
+    img14.onclick = function(){
+      modal14.style.display = "block";
+      message14.innerHTML = "Listening to Richard tell a story is like opening a box of chocolates on Valentine's day. You never know what kind of treasure you're about to bite into, but you're going to enjoy whatever it is. Happy Birthday buddy!";
+    }
+
+    img15.onclick = function(){
+      modal15.style.display = "block";
+      message15.innerHTML = "Happy birthday Richard! And happy PT birthday too! You joined us Jan 31, 2020. You've been an important part of our community :)";
+    }
+
+    img16.onclick = function(){
+      modal16.style.display = "block";
+      message16.innerHTML = "Thanks for being so supportive now, before and likely in the future! Seems you always have the right attitude and motivation to inspire others. When you just out of nowhere offered me a free phone it really re-invigorated my interest and spark in contributing to the Ethereum space! ";
+    }
+
+   
 
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
-  <span class="close">&times;</span>
-  <img class="modal-content" id="img01">
-  <div id="caption"></div>
-</div>
+    // Get the <span> elements that close the modals
+    var close1 = document.getElementsByClassName("close")[0];
+    var close2 = document.getElementsByClassName("close")[1];
+    var close3 = document.getElementsByClassName("close")[2];
+    var close4 = document.getElementsByClassName("close")[3];
+    var close5 = document.getElementsByClassName("close")[4];
+    var close6 = document.getElementsByClassName("close")[5];
+    var close7 = document.getElementsByClassName("close")[6];
+    var close8 = document.getElementsByClassName("close")[7];
+    var close9 = document.getElementsByClassName("close")[8];
+    var close10 = document.getElementsByClassName("close")[9];
+    var close11 = document.getElementsByClassName("close")[10];
+    var close12 = document.getElementsByClassName("close")[11];
+    var close13 = document.getElementsByClassName("close")[12];
+    var close14 = document.getElementsByClassName("close")[13];
+    var close15 = document.getElementsByClassName("close")[14];
+    var close16 = document.getElementsByClassName("close")[15];
+    
 
-<script>
-// Get the modal
-var modal = document.getElementById("myModal");
+    // When the user clicks on <span> (x), close the modal
+    close1.onclick = function() {
+      modal1.style.display = "none";
+    }
+    close2.onclick = function() {
+      modal2.style.display = "none";
+    }
+    close3.onclick = function() {
+      modal3.style.display = "none";
+    }
 
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById("myImg");
-var modalImg = document.getElementById("img01");
-var captionText = document.getElementById("caption");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = 'https://media.istockphoto.com/id/1346684222/photo/happy-birthday-3d-render-of-colorful-typography.jpg?b=1&s=170667a&w=0&k=20&c=EI5oCtUbxXdftFsN0436caH2Kre9-4j30L85g-9nDtA=';
-  captionText.innerHTML = this.alt;
-  textDisplay.innerHTML = 'This is some text';
-}
+    close4.onclick = function() {
+      modal4.style.display = "none";
+    }
+    close5.onclick = function() {
+      modal5.style.display = "none";
+    }
+    close6.onclick = function() {
+      modal6.style.display = "none";
+    }
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+    close7.onclick = function() {
+      modal7.style.display = "none";
+    }
+    close8.onclick = function() {
+      modal8.style.display = "none";
+    }
+    close9.onclick = function() {
+      modal9.style.display = "none";
+    }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
-  modal.style.display = "none";
-}
-</script>
+    close10.onclick = function() {
+      modal10.style.display = "none";
+    }
+    close11.onclick = function() {
+      modal11.style.display = "none";
+    }
+    close12.onclick = function() {
+      modal12.style.display = "none";
+    }
 
+    close13.onclick = function() {
+      modal13.style.display = "none";
+    }
+    close14.onclick = function() {
+      modal14.style.display = "none";
+    }
+    close15.onclick = function() {
+      modal15.style.display = "none";
+    }
+
+    close16.onclick = function() {
+      modal16.style.display = "none";
+    }
+    
+   
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal1) {
+        modal1.style.display = "none";
+      }
+      if (event.target == modal2) {
+        modal2.style.display = "none";
+      }
+      if (event.target == modal3) {
+        modal3.style.display = "none";
+      }
+      if (event.target == modal4) {
+        modal4.style.display = "none";
+      }
+      if (event.target == modal5) {
+        modal5.style.display = "none";
+      }
+      if (event.target == modal6) {
+        modal6.style.display = "none";
+      }
+      if (event.target == modal7) {
+        modal7.style.display = "none";
+      }
+      if (event.target == modal8) {
+        modal8.style.display = "none";
+      }
+      if (event.target == modal9) {
+        modal9.style.display = "none";
+      }
+      if (event.target == modal10) {
+        modal10.style.display = "none";
+      }
+      if (event.target == modal11) {
+        modal11.style.display = "none";
+      }
+      if (event.target == modal12) {
+        modal12.style.display = "none";
+      }
+      if (event.target == modal13) {
+        modal13.style.display = "none";
+      }
+      if (event.target == modal14) {
+        modal14.style.display = "none";
+      }
+      if (event.target == modal15) {
+        modal15.style.display = "none";
+      }
+      if (event.target == modal16) {
+        modal16.style.display = "none";
+      }
+      
+      
+    }
+  </script>
 </body>
 </html>
+

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* Styles for the images and the modal window */
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #8e43b4;
+    }
+
+    .img-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .img-container img {
+        border: 5px solid black;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 300px;
+      margin: 10px;
+    }
+
+    .img-container img:hover {
+      opacity: 0.6;
+    }
+
+    /* The Modal (background) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    }
+
+    /* Modal Content (text) */
+    .modal-content {
+      margin: auto;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+      font-size: 35px;
+      color: #8e43b4;
+      text-align: justify;
+    }
+
+    /* The Close Button */
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* 100% Image Width on Smaller Screens */
+    @media only screen and (max-width: 700px){
+      .modal-content {
+        width: 100%;
+      }
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 75px;
+      font-family: "Space Mono";
+      color: white;
+      text-shadow: 3px 3px purple, 5px 5px white;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Messages From Poolers!</h1>
+  <div class="img-container">
+    <img id="myImg1" src="Image/Shivansh.png" alt="image1">
+    <img id="myImg2" src="Image/Tim.png" alt="image2">
+    <img id="myImg3" src="Image/Tjark.png" alt="image3">
+    <img id="myImg4" src="Image/Thumbs up.png" alt="image3">
+    <img id="myImg5" src="Image/Taliskye.png" alt="image3">
+    <img id="myImg6" src="Image/Pedro.png" alt="image3">
+    <img id="myImg7" src="Image/Oops.png" alt="image3">
+    <img id="myImg8" src="Image/Ncookie.png" alt="image3">
+    <img id="myImg9" src="Image/Nahuel.png" alt="image3">
+    <img id="myImg10" src="Image/Mon.png" alt="image3">
+    <img id="myImg11" src="Image/Livster.png" alt="image3">
+    <img id="myImg12" src="Image/Leighton.png" alt="image3">
+    <img id="myImg13" src="Image/Dylan.png" alt="image3">
+    <img id="myImg14" src="Image/Daboom.png" alt="image3">
+    <img id="myImg15" src="Image/Brendan.png" alt="image3">
+    <img id="myImg16" src="Image/Andy.png" alt="image3">
+    <img id="myImg17" src="Image/Underthesea.png" alt="image3">
+    
+  </div>
+
+  <!-- The Modals -->
+  <div id="myModal1" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message1"></div>
+  </div>
+
+  <div id="myModal2" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message2"></div>
+  </div>
+
+  <div id="myModal3" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message3"></div>
+  </div>
+
+  <div id="myModal4" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message4"></div>
+  </div>
+
+  <div id="myModal5" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message5"></div>
+  </div>
+
+  <div id="myModal6" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message6"></div>
+  </div>
+
+  <div id="myModal7" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message7"></div>
+  </div>
+
+  <div id="myModal8" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message8"></div>
+  </div>
+
+  <div id="myModal9" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message9"></div>
+  </div>
+
+  <div id="myModal10" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message10"></div>
+  </div>
+
+  <div id="myModal11" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message11"></div>
+  </div>
+
+  <div id="myModal12" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message12"></div>
+  </div>
+
+  <div id="myModal13" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message13"></div>
+  </div>
+
+  <div id="myModal14" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message14"></div>
+  </div>
+
+  <div id="myModal15" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message15"></div>
+  </div>
+
+  <div id="myModal16" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message16"></div>
+  </div>
+
+  <div id="myModal17" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" id="message17"></div>
+  </div>
+
+ 
+
+  <script>
+    // Get the modals
+    var modal1 = document.getElementById("myModal1");
+    var modal2 = document.getElementById("myModal2");
+    var modal3 = document.getElementById("myModal3");
+    var modal4 = document.getElementById("myModal4");
+    var modal5 = document.getElementById("myModal5");
+    var modal6 = document.getElementById("myModal6");
+    var modal7 = document.getElementById("myModal7");
+    var modal8 = document.getElementById("myModal8");
+    var modal9 = document.getElementById("myModal9");
+    var modal10 = document.getElementById("myModal10");
+    var modal11 = document.getElementById("myModal11");
+    var modal12 = document.getElementById("myModal12");
+    var modal13 = document.getElementById("myModal13");
+    var modal14 = document.getElementById("myModal14");
+    var modal15 = document.getElementById("myModal15");
+    var modal16 = document.getElementById("myModal16");
+    var modal17 = document.getElementById("myModal17");
+    
+
+    // Get the images
+    var img1 = document.getElementById("myImg1");
+    var img2 = document.getElementById("myImg2");
+    var img3 = document.getElementById("myImg3");
+    var img4 = document.getElementById("myImg4");
+    var img5 = document.getElementById("myImg5");
+    var img6 = document.getElementById("myImg6");
+    var img7 = document.getElementById("myImg7");
+    var img8 = document.getElementById("myImg8");
+    var img9 = document.getElementById("myImg9");
+    var img10 = document.getElementById("myImg10");
+    var img11 = document.getElementById("myImg11");
+    var img12 = document.getElementById("myImg12");
+    var img13 = document.getElementById("myImg13");
+    var img14 = document.getElementById("myImg14");
+    var img15 = document.getElementById("myImg15");
+    var img16 = document.getElementById("myImg16");
+    var img17 = document.getElementById("myImg17");
+   
+
+    // Get the messages
+    var message1 = document.getElementById("message1");
+    var message2 = document.getElementById("message2");
+    var message3 = document.getElementById("message3");
+    var message4 = document.getElementById("message4");
+    var message5 = document.getElementById("message5");
+    var message6 = document.getElementById("message6");
+    var message7 = document.getElementById("message7");
+    var message8 = document.getElementById("message8");
+    var message9 = document.getElementById("message9");
+    var message10 = document.getElementById("message10");
+    var message11 = document.getElementById("message11");
+    var message12 = document.getElementById("message12");
+    var message13 = document.getElementById("message13");
+    var message14 = document.getElementById("message14");
+    var message15 = document.getElementById("message15");
+    var message16 = document.getElementById("message16");
+    var message17 = document.getElementById("message17");
+   
+
+    img1.onclick = function(){
+      modal1.style.display = "block";
+      message1.innerHTML = "Happy Birthday Richard! You truly are one of the most kind-hearted and positive people I know. Your willingness to always help others is truly inspiring and I am so grateful to have you as a friend. I respect you a lot for the person you are and wish you every joy in the world. Cheers to another year of spreading joy and making a difference in the world!";
+    
+    }
+
+    img2.onclick = function(){
+      modal2.style.display = "block";
+      message2.innerHTML = "Richard, thanks for your generosity, your vision, and your lessons! It is an honor to know you, ser and I'm so glad you were born!";
+    }
+
+    img3.onclick = function(){
+      modal3.style.display = "block";
+      message3.innerHTML = "I don't know where to start! Thank you for always elevating others, be it through direct help, your ability to connect with others, or simply with humor. Your positive attitude is contagious and you must be the kindest heart I know. One thing is sure - PoolTogether would not be the same without you. Happy Birthday, Richard!";
+    }
+
+    img4.onclick = function(){
+      modal4.style.display = "block";
+      message4.innerHTML = "Happy Birthday Richard! Thanks for the amazing energy you bring to the PoolTogether community and the crypto space as a whole! ";
+    }
+
+    img5.onclick = function(){
+      modal5.style.display = "block";
+      message5.innerHTML = "Happy Birthday Richard! Youre a constant inspiration in the web3 space and in life. You very literally are the change you want to see in the world. The connector of worlds and the bringer of life changing events. Everyone's life is richer with Richard.";
+    }
+
+    img6.onclick = function(){
+      modal6.style.display = "block";
+      message6.innerHTML = "Happy birthday! 🎉";
+    }
+
+    img7.onclick = function(){
+      modal7.style.display = "block";
+      message7.innerHTML = "You are a wonderful soul!  Wishing you a happy, wholesome, family filled birthday! Thank you for everything that you've done and continue to do. You've played a critical role in the success of others and we are proud to have had your support. We are grateful for you and everything you've done. You are a core example of what community means.  Hugs and love <3";
+    }
+
+    img8.onclick = function(){
+      modal8.style.display = "block";
+      message8.innerHTML = "Didn't know we'd get a Richard birthday this year - it's only getting better! Have a wonderful birthday, and keep on doing you; the world is a better place because of it.";
+    }
+
+    img9.onclick = function(){
+      modal9.style.display = "block";
+      message9.innerHTML = "Richard has been a great friend since the very beginning, even without knowing me. I wish him double the good he does for everyone. You are the best Richard!";
+    }
+
+    img10.onclick = function(){
+      modal10.style.display = "block";
+      message10.innerHTML = "Happy birthday, Sir Richard! Your kindness and generosity are a true inspiration, and we are so grateful to have you in our lives. May your special day be filled with love, laughter, and all the things you wish for, and may the coming year bring you even more blessings to share with others. Here's to another year of life and all the good it brings!";
+    }
+
+    img11.onclick = function(){
+      modal11.style.display = "block";
+      message11.innerHTML = "Richard! You are one of the most kind, thoughtful, driven, and unique people I've met in this space. We need more Richards! You karate chop the idea of risk-averse in the face (nfa, DYOR), a bullishness I see as a reflection of your conviction in Crypto and the community behind it. I barely knew you and you changed my life this past year. Thank you for encouraging me to use Juicebox to raise funds for my car. In retrospect, that was a trigger event that brought so much positivity and bravery into my life. A few weeks later, I applied to ConsenSys. I had eyed the job before but didn't believe I was 'cut out' for it. Bro, I am literally the puzzle piece that fits into that job, that's how cut out for it I am. I took a powerful community to prove that to me.  I'm starting my new position as Senior Copywriter at ConsenSys on January 31st :) Keep being you. There are other Livsters out there who need you, and your impact on me will allow me to be a Richard to those new Livsters with so much talent, but so little belief in themselves. Happy Birthday!!";
+    }
+
+    img12.onclick = function(){
+      modal12.style.display = "block";
+      message12.innerHTML = "Richard! You are an inspiration! The best friend and biggest supporter someone could ask for. I am lucky to have you in my life!";
+    }
+
+    img13.onclick = function(){
+      modal13.style.display = "block";
+      message13.innerHTML = "Thank you for all that you do in the PoolTogether community 🫡🤝";
+    }
+
+    img14.onclick = function(){
+      modal14.style.display = "block";
+      message14.innerHTML = "Listening to Richard tell a story is like opening a box of chocolates on Valentine's day. You never know what kind of treasure you're about to bite into, but you're going to enjoy whatever it is. Happy Birthday buddy!";
+    }
+
+    img15.onclick = function(){
+      modal15.style.display = "block";
+      message15.innerHTML = "Happy birthday Richard! And happy PT birthday too! You joined us Jan 31, 2020. You've been an important part of our community :)";
+    }
+
+    img16.onclick = function(){
+      modal16.style.display = "block";
+      message16.innerHTML = "Thanks for being so supportive now, before and likely in the future! Seems you always have the right attitude and motivation to inspire others. When you just out of nowhere offered me a free phone it really re-invigorated my interest and spark in contributing to the Ethereum space! ";
+    }
+
+    img17.onclick = function(){
+      modal17.style.display = "block";
+      message17.innerHTML = "Rliriano, you are the embodiment of why we crypto. Every day we are lucky to have you around.  Happy Birthday.";
+    }
+
+   
+
+
+    // Get the <span> elements that close the modals
+    var close1 = document.getElementsByClassName("close")[0];
+    var close2 = document.getElementsByClassName("close")[1];
+    var close3 = document.getElementsByClassName("close")[2];
+    var close4 = document.getElementsByClassName("close")[3];
+    var close5 = document.getElementsByClassName("close")[4];
+    var close6 = document.getElementsByClassName("close")[5];
+    var close7 = document.getElementsByClassName("close")[6];
+    var close8 = document.getElementsByClassName("close")[7];
+    var close9 = document.getElementsByClassName("close")[8];
+    var close10 = document.getElementsByClassName("close")[9];
+    var close11 = document.getElementsByClassName("close")[10];
+    var close12 = document.getElementsByClassName("close")[11];
+    var close13 = document.getElementsByClassName("close")[12];
+    var close14 = document.getElementsByClassName("close")[13];
+    var close15 = document.getElementsByClassName("close")[14];
+    var close16 = document.getElementsByClassName("close")[15];
+    var close17 = document.getElementsByClassName("close")[16];
+    
+
+    // When the user clicks on <span> (x), close the modal
+    close1.onclick = function() {
+      modal1.style.display = "none";
+    }
+    close2.onclick = function() {
+      modal2.style.display = "none";
+    }
+    close3.onclick = function() {
+      modal3.style.display = "none";
+    }
+
+    close4.onclick = function() {
+      modal4.style.display = "none";
+    }
+    close5.onclick = function() {
+      modal5.style.display = "none";
+    }
+    close6.onclick = function() {
+      modal6.style.display = "none";
+    }
+
+    close7.onclick = function() {
+      modal7.style.display = "none";
+    }
+    close8.onclick = function() {
+      modal8.style.display = "none";
+    }
+    close9.onclick = function() {
+      modal9.style.display = "none";
+    }
+
+    close10.onclick = function() {
+      modal10.style.display = "none";
+    }
+    close11.onclick = function() {
+      modal11.style.display = "none";
+    }
+    close12.onclick = function() {
+      modal12.style.display = "none";
+    }
+
+    close13.onclick = function() {
+      modal13.style.display = "none";
+    }
+    close14.onclick = function() {
+      modal14.style.display = "none";
+    }
+    close15.onclick = function() {
+      modal15.style.display = "none";
+    }
+
+    close16.onclick = function() {
+      modal16.style.display = "none";
+    }
+
+    close17.onclick = function() {
+      modal17.style.display = "none";
+    }
+    
+   
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal1) {
+        modal1.style.display = "none";
+      }
+      if (event.target == modal2) {
+        modal2.style.display = "none";
+      }
+      if (event.target == modal3) {
+        modal3.style.display = "none";
+      }
+      if (event.target == modal4) {
+        modal4.style.display = "none";
+      }
+      if (event.target == modal5) {
+        modal5.style.display = "none";
+      }
+      if (event.target == modal6) {
+        modal6.style.display = "none";
+      }
+      if (event.target == modal7) {
+        modal7.style.display = "none";
+      }
+      if (event.target == modal8) {
+        modal8.style.display = "none";
+      }
+      if (event.target == modal9) {
+        modal9.style.display = "none";
+      }
+      if (event.target == modal10) {
+        modal10.style.display = "none";
+      }
+      if (event.target == modal11) {
+        modal11.style.display = "none";
+      }
+      if (event.target == modal12) {
+        modal12.style.display = "none";
+      }
+      if (event.target == modal13) {
+        modal13.style.display = "none";
+      }
+      if (event.target == modal14) {
+        modal14.style.display = "none";
+      }
+      if (event.target == modal15) {
+        modal15.style.display = "none";
+      }
+      if (event.target == modal16) {
+        modal16.style.display = "none";
+      }
+      if (event.target == modal17) {
+        modal17.style.display = "none";
+      }
+      
+      
+    }
+  </script>
+</body>
+</html>
+
